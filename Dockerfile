@@ -17,4 +17,12 @@ RUN npm install -g opencode-ai @openai/codex
 
 WORKDIR /workspace
 
-CMD ["bash"]
+ENV OPENCODE_PORT=4096
+ENV OPENCODE_HOST=0.0.0.0
+
+EXPOSE 4096
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
